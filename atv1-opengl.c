@@ -3,32 +3,48 @@
 
 void display(void)
 {
-/*  clear all pixels  */
-    glClear (GL_COLOR_BUFFER_BIT);
+    glClearColor (0.0, 0.0, 0.0, 0.0);
+	glClear (GL_COLOR_BUFFER_BIT);
 
-/*  draw white polygon (rectangle) with corners at
- *  (0.25, 0.25, 0.0) and (0.75, 0.75, 0.0)  
- */
     glColor3f (1.0, 1.0, 1.0);
+    
+    
+    // MALHA
+    glPolygonMode(GL_FRONT_AND_BACK,GL_LINE);
+
     glBegin(GL_TRIANGLE_STRIP);
-        glVertex3f (0.25, 0.25, 0.0);
-        glVertex3f (0.75, 0.25, 0.0);
-        glVertex3f (0.75, 0.75, 0.0);
-        glVertex3f (0.25, 0.75, 0.0);
+        glVertex3f (0.46, 0.04, 0.0);
+        glVertex3f (0.30, 0.08, 0.0);
+        glVertex3f (0.46, 0.08, 0.0);
+        glVertex3f (0.34, 0.4, 0.0);
+        glVertex3f (0.475, 0.4, 0.0);
     glEnd();
 
-/*  don't wait!  
- *  start processing buffered OpenGL routines 
- */
+    glFlush ();
+}
+
+void displayNew(void){
+	glClearColor (0.0, 0.0, 0.0, 0.0);
+	glClear (GL_COLOR_BUFFER_BIT);
+ 
+    glColor3f (1.0, 1.0, 1.0);
+    
+    // PREENCHIDO
+    glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+    
+    glBegin(GL_TRIANGLE_STRIP);
+        glVertex3f (0.46, 0.04, 0.0);
+        glVertex3f (0.30, 0.08, 0.0);
+        glVertex3f (0.46, 0.08, 0.0);
+        glVertex3f (0.34, 0.4, 0.0);
+        glVertex3f (0.475, 0.4, 0.0);
+    glEnd();
+
     glFlush ();
 }
 
 void init (void) 
 {
-/*  select clearing (background) color       */
-    glClearColor (0.0, 0.0, 0.0, 0.0);
-
-/*  initialize viewing values  */
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(0.0, 1.0, 0.0, 1.0, -1.0, 1.0);
@@ -36,29 +52,24 @@ void init (void)
 
 void keyboard(unsigned char key, int x, int y){
   switch (key) {
-  case 27:                                         // tecla Esc (encerra o programa)
+  case 27:
 	exit(0);
 	break;
   }
 }
 
-/* 
- *  Declare initial window size, position, and display mode
- *  (single buffer and RGBA).  Open window with "hello"
- *  in its title bar.  Call initialization routines.
- *  Register callback function to display graphics.
- *  Enter main loop and process events.
- */
+
 int main(int argc, char** argv)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode (GLUT_SINGLE | GLUT_RGB);
-    glutInitWindowSize (250, 250); 
+    glutInitWindowSize (500, 500); 
     glutInitWindowPosition (100, 100);
-    glutCreateWindow ("hello");
+    glutCreateWindow ("Atividade 1 - OpenGL");
     init ();
     glutDisplayFunc(display); 
     glutKeyboardFunc(keyboard);
+    glutMouseFunc(displayNew);
     glutMainLoop();
-    return 0;   /* ISO C requires main to return int. */
+    return 0;
 }
