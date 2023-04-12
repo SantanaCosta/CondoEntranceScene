@@ -241,6 +241,126 @@ glScalef(2.1, 0.1, 0.1);
 glutSolidCube(1.0);
 glPopMatrix();
 
+// ################## PORTAO FRONTAL 1 ABAIXO ##################
+glPushMatrix();
+glTranslatef(-1.7, 0.0, -0.7);
+glRotatef(-90.0, 0.0, 1.0, 0.0);
+
+/*estacas horizontais portao*/
+glColor3f(1.0, 1.0, 1.0);
+
+glPushMatrix();
+glTranslatef(0.0, 0.3, 2.7);
+glScalef(5.8, 0.2, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(0.0, 0.8, 2.7);
+glScalef(5.8, 0.1, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(0.0, 1.3, 2.7);
+glScalef(5.8, 0.1, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(0.0, 1.8, 2.7);
+glScalef(5.8, 0.1, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(0.0, 2.3, 2.7);
+glScalef(5.8, 0.1, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(0.0, 2.8, 2.7);
+glScalef(5.8, 0.2, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+/*estacas verticais portao*/
+glPushMatrix();
+glTranslatef(-3.0, 1.5, 2.7);
+glScalef(0.2, 2.8, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(3.0, 1.5, 2.7);
+glScalef(0.2, 2.8, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPopMatrix();
+// ################## PORTAO FRONTAL 1 ACIMA ##################
+
+// ################## PORTAO FRONTAL 2 ABAIXO ##################
+glPushMatrix();
+glTranslatef(-1.7, 0.0, -6.9);
+glRotatef(-90.0, 0.0, 1.0, 0.0);
+
+/*estacas horizontais portao*/
+glColor3f(1.0, 1.0, 1.0);
+
+glPushMatrix();
+glTranslatef(0.0, 0.3, 2.7);
+glScalef(5.8, 0.2, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(0.0, 0.8, 2.7);
+glScalef(5.8, 0.1, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(0.0, 1.3, 2.7);
+glScalef(5.8, 0.1, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(0.0, 1.8, 2.7);
+glScalef(5.8, 0.1, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(0.0, 2.3, 2.7);
+glScalef(5.8, 0.1, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(0.0, 2.8, 2.7);
+glScalef(5.8, 0.2, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+/*estacas verticais portao*/
+glPushMatrix();
+glTranslatef(-3.0, 1.5, 2.7);
+glScalef(0.2, 2.8, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(3.0, 1.5, 2.7);
+glScalef(0.2, 2.8, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPopMatrix();
+// ################## PORTAO FRONTAL 2 ACIMA ##################
+
 // ################## PORTAO ENTRE PILASTRAS LATERAIS ABAIXO ##################
 glPushMatrix();
 glTranslatef(-0.6, 0.0, -0.2);
