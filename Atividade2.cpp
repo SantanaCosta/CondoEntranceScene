@@ -41,6 +41,77 @@ glutSolidCube(1.0);
 glPopMatrix();
 // ################## COBERTURA ACIMA ##################
 
+// ################## LAMPADAS ABAIXO ##################
+
+glColor3f(1.0, 1.0, 1.0);
+
+// linha 0
+glPushMatrix();
+glTranslatef(-4.2, 4.4, 0.0);
+glRotatef(90.0, -1.0, 0.0, 0.0);
+glutSolidCone(0.25, 0.1, 13, 13);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(3.0, 4.4, 0.0);
+glRotatef(90.0, -1.0, 0.0, 0.0);
+glutSolidCone(0.25, 0.1, 13, 13);
+glPopMatrix();
+
+// linha 1
+glPushMatrix();
+glTranslatef(-4.2, 4.4, -2.0);
+glRotatef(90.0, -1.0, 0.0, 0.0);
+glutSolidCone(0.25, 0.1, 13, 13);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(3.0, 4.4, -2.0);
+glRotatef(90.0, -1.0, 0.0, 0.0);
+glutSolidCone(0.25, 0.1, 13, 13);
+glPopMatrix();
+
+// linha 2
+glPushMatrix();
+glTranslatef(-4.2, 4.4, -4.0);
+glRotatef(90.0, -1.0, 0.0, 0.0);
+glutSolidCone(0.25, 0.1, 13, 13);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(3.0, 4.4, -4.0);
+glRotatef(90.0, -1.0, 0.0, 0.0);
+glutSolidCone(0.25, 0.1, 13, 13);
+glPopMatrix();
+
+// linha 3
+glPushMatrix();
+glTranslatef(-4.2, 4.4, -6.0);
+glRotatef(90.0, -1.0, 0.0, 0.0);
+glutSolidCone(0.25, 0.1, 13, 13);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(3.0, 4.4, -6.0);
+glRotatef(90.0, -1.0, 0.0, 0.0);
+glutSolidCone(0.25, 0.1, 13, 13);
+glPopMatrix();
+
+// linha 4
+glPushMatrix();
+glTranslatef(-4.2, 4.4, -8.0);
+glRotatef(90.0, -1.0, 0.0, 0.0);
+glutSolidCone(0.25, 0.1, 13, 13);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(3.0, 4.4, -8.0);
+glRotatef(90.0, -1.0, 0.0, 0.0);
+glutSolidCone(0.25, 0.1, 13, 13);
+glPopMatrix();
+
+// ################## LAMPADAS ACIMA ##################
+
 // PILASTRA 1 ATRAS direita
 
 glColor4f(0.5, 0.2, 0.0, 0.0);
