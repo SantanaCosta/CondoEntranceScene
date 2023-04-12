@@ -178,9 +178,6 @@ glutSolidCube(1.0);
 glPopMatrix();
 
 // estaca inferiores portão //
-
-glPushMatrix();
-
 glColor3f(1.0, 1.0, 1.0);
 
 glPushMatrix();
@@ -214,7 +211,6 @@ glScalef(2.1, 0.1, 0.1);
 glutSolidCube(1.0);
 glPopMatrix();
 
-
 glPushMatrix();
 glTranslatef(-3.0, 0.0, -26.0);
 glScalef(2.1, 0.1, 0.1);
@@ -245,6 +241,64 @@ glScalef(2.1, 0.1, 0.1);
 glutSolidCube(1.0);
 glPopMatrix();
 
+// ################## PORTAO ENTRE PILASTRAS LATERAIS ABAIXO ##################
+glPushMatrix();
+glTranslatef(-0.6, 0.0, -0.2);
+
+/*estacas horizontais portao*/
+glColor3f(1.0, 1.0, 1.0);
+
+glPushMatrix();
+glTranslatef(0.0, 0.3, 2.7);
+glScalef(5.8, 0.2, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(0.0, 0.8, 2.7);
+glScalef(5.8, 0.1, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(0.0, 1.3, 2.7);
+glScalef(5.8, 0.1, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(0.0, 1.8, 2.7);
+glScalef(5.8, 0.1, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(0.0, 2.3, 2.7);
+glScalef(5.8, 0.1, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(0.0, 2.8, 2.7);
+glScalef(5.8, 0.2, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+/*estacas verticais portao*/
+glPushMatrix();
+glTranslatef(-3.0, 1.5, 2.7);
+glScalef(0.2, 2.8, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPushMatrix();
+glTranslatef(3.0, 1.5, 2.7);
+glScalef(0.2, 2.8, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+glPopMatrix();
+// ################## PORTAO ENTRE PILASTRAS LATERAIS ACIMA ##################
 
 // ################## PILASTRA 1 ABAIXO ##################
 glColor4f(0.5, 0.2, 0.0, 0.0);
@@ -770,113 +824,31 @@ glScalef(0.3, 0.3, 0.18);
 glutSolidTetrahedron();
 glPopMatrix();
 
-glColor3f(1.0, 1.0, 0.0);
-
-glPushMatrix();
-glTranslatef(-1.1, 0.3, 2.7);
-glTranslatef(1.1, -0.3, -2.7);
-
-glPushMatrix();
-glTranslatef(0.0, 0.3, 2.7);
-glScalef(2.2, 0.1, 0.1);
-glutSolidCube(1.0);
-glPopMatrix();
-
-glPushMatrix();
-glTranslatef(0.0, 0.8, 2.7);
-glScalef(2.2, 0.1, 0.1);
-glutSolidCube(1.0);
-glPopMatrix();
-
-glPushMatrix();
-glTranslatef(0.0, 1.3, 2.7);
-glScalef(2.2, 0.1, 0.1);
-glutSolidCube(1.0);
-glPopMatrix();
-
-/*estacas horizontais portao*/
-glColor3f(1.0, 1.0, 1.0);
-
-glPushMatrix();
-glTranslatef(-1.7, 0.3, 2.7);
-
-glTranslatef(1.1, -0.3, -2.7);
-
-glPushMatrix();
-glTranslatef(0.0, 0.3, 2.7);
-glScalef(5.8, 0.2, 0.1);
-glutSolidCube(1.0);
-glPopMatrix();
-
-glPushMatrix();
-glTranslatef(0.0, 0.8, 2.7);
-glScalef(5.8, 0.1, 0.1);
-glutSolidCube(1.0);
-glPopMatrix();
-
-glPushMatrix();
-glTranslatef(0.0, 1.3, 2.7);
-glScalef(5.8, 0.1, 0.1);
-glutSolidCube(1.0);
-glPopMatrix();
-
-glPushMatrix();
-glTranslatef(0.0, 1.8, 2.7);
-glScalef(5.8, 0.1, 0.1);
-glutSolidCube(1.0);
-glPopMatrix();
-
-glPushMatrix();
-glTranslatef(0.0, 2.3, 2.7);
-glScalef(5.8, 0.1, 0.1);
-glutSolidCube(1.0);
-glPopMatrix();
-
-glPushMatrix();
-glTranslatef(0.0, 2.8, 2.7);
-glScalef(5.8, 0.2, 0.1);
-glutSolidCube(1.0);
-glPopMatrix();
-
 /*estaca lado esquerdo frente*/
 glColor3f(1.0, 1.0, 0.0);
 glPushMatrix();
-glTranslatef(-2.5, 0.9, 3.0);
-glScalef(0.2, 1.6, 0.1);
+glTranslatef(-2.5, 0.7, 3.0);
+glScalef(0.2, 1.2, 0.1);
 glutSolidCube(1.0);
 glPopMatrix();
 
-
 glPushMatrix();
-glTranslatef(-2.5, 0.9, 4.5);
-glScalef(0.2, 1.6, 0.1);
-glutSolidCube(1.0);
-glPopMatrix();
-
-
-glPushMatrix();
-glTranslatef(-2.5, 0.9, 6.0);
-glScalef(0.2, 1.6, 0.1);
+glTranslatef(-2.5, 0.7, 7.0);
+glScalef(0.2, 1.2, 0.1);
 glutSolidCube(1.0);
 glPopMatrix();
 
 
 /*estaca lado direito frente*/
 glPushMatrix();
-glTranslatef(2.5, 0.9, 3.0);
-glScalef(0.2, 1.6, 0.1);
+glTranslatef(2.5, 0.7, 3.0);
+glScalef(0.2, 1.2, 0.1);
 glutSolidCube(1.0);
 glPopMatrix();
 
 glPushMatrix();
-glTranslatef(2.5, 0.9, 4.5);
-glScalef(0.2, 1.6, 0.1);
-glutSolidCube(1.0);
-glPopMatrix();
-
-glPushMatrix();
-glTranslatef(2.5, 0.9, 6.0);
-glScalef(0.2, 1.6, 0.1);
+glTranslatef(2.5, 0.7, 7.0);
+glScalef(0.2, 1.2, 0.1);
 glutSolidCube(1.0);
 glPopMatrix();
 
@@ -884,12 +856,10 @@ glPopMatrix();
 glColor3f(1.0, 1.0, 1.0);
 
 glPushMatrix();
-glTranslatef(2.5, 1.5, 4.5);
-glScalef(0.1, 0.1, 3.2);
+glTranslatef(2.5, 1.2, 4.9);
+glScalef(0.1, 0.1, 3.8);
 glutSolidCube(1.0);
 glPopMatrix();
-
-
 
 glPopMatrix();
 
