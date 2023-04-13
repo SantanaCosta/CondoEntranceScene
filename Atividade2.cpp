@@ -16,6 +16,7 @@ glPushMatrix();
 glTranslatef(lat, 0.0, zoom);
 glRotatef((GLfloat) rot, 0.0, 1.0, 0.0);
 
+
 //chao
 glColor3f(0.3, 0.3, 0.3);
 glPushMatrix();
@@ -112,34 +113,52 @@ glPopMatrix();
 
 // ################## LAMPADAS ACIMA ##################
 
+
+
 // PILASTRA 1 ATRAS direita
 
 glColor4f(0.5, 0.2, 0.0, 0.0);
 glPushMatrix();
-// altura = altura_chao/2 + altura_obj/2
 glTranslatef(-1.0, 1.2, -25.0);
 glScalef(1., 5.2, 9.8);
 glutSolidCube(1.0);
 glPopMatrix();
 
+//parede lateral direita
 
-// PILASTRA 1 ATRAS esquerda
-
-/*estaca lado esquerdo tras*/
 glColor4f(0.5, 0.2, 0.0, 0.0);
 glPushMatrix();
+glTranslatef(1.8, 1.2, -25.0);
+glScalef(4.5, 5.2, 9.8);
+glutSolidCube(1.0);
+glPopMatrix();
+
+// Parede ATRAS esquerda
+
+glMatrixMode(GL_MODELVIEW); //efeito espelhado
+glPushMatrix();
+glColor4f(0.5f, 0.5f, 0.5f, 1.0f);
 glTranslatef(-4.3, 0.5, -25.5);
 glScalef(0.5, 3.7, 9.8);
+glutSolidCube(1.0);
+
+glPopMatrix();
+
+//parede de baixo
+glColor4f(0.0, 0.0, 0.0, 0.0);
+glPushMatrix();
+glTranslatef(-4.3, -0.7, -25.5);
+glScalef(0.5, 1.4, 9.8);
 glutSolidCube(1.0);
 glPopMatrix();
 
 
-// HORIZONTAL
-glColor4f(0.5, 0.2, 0.0, 0.0);
+// Parede superior esquerda
 
+glColor4f(0.5, 0.2, 0.0, 0.0);
 glPushMatrix();
-glTranslatef(-2.5, 3.1, -25.0);
-glScalef(-4.0, 1.5, 9.8);
+glTranslatef(-2.5, 3.7, -25.0);
+glScalef(-4.0, 2.8, 9.8);
 glutSolidCube(1.0);
 glPopMatrix();
 
@@ -156,12 +175,12 @@ glPopMatrix();
 
 glColor4f(0.0, 0.0, 0.0, 0.0);
 glPushMatrix();
-glTranslatef(1.1, 4.5, -25.0);
-glScalef(-8.0, 1.5, 9.8);
+glTranslatef(0.7, 4.5, -25.0);
+glScalef(-9.1, 1.5, 9.8);
 glutSolidCube(1.0);
 glPopMatrix();
 
-/*estaca lado direito trás*/
+/*estaca lado direito tr?s*/
 glColor3f(1.0, 1.0, 1.0);
 glPushMatrix();
 glTranslatef(-1.8, 0.1, -26.0);
@@ -169,7 +188,7 @@ glScalef(0.2, 4.0, 0.2);
 glutSolidCube(1.0);
 glPopMatrix();
 
-/*estaca lado esquerdo trás*/
+/*estaca lado esquerdo tr?s*/
 glColor3f(1.0, 1.0, 1.0);
 glPushMatrix();
 glTranslatef(-4.1, 0.1, -26.0);
@@ -177,7 +196,7 @@ glScalef(0.2, 4.0, 0.2);
 glutSolidCube(1.0);
 glPopMatrix();
 
-// estaca inferiores portão //
+// estaca inferiores port?o //
 glColor3f(1.0, 1.0, 1.0);
 
 glPushMatrix();
@@ -982,6 +1001,8 @@ glutSolidCube(1.0);
 glPopMatrix();
 
 glPopMatrix();
+
+
 
   glutSwapBuffers();
 }
