@@ -116,7 +116,7 @@ glPopMatrix();
 // ################## PORTARIA ABAIXO ##################
 
 glPushMatrix();
-glTranslatef(0.0, 0.0, 11.612);
+glTranslatef(0.0, 0.0, 11.593);
 
 // HORIZONTAL SUPERIOR PRETA
 
@@ -158,8 +158,8 @@ glPopMatrix();
 
 glColor3f(0.15, 0.15, 0.15);
 glPushMatrix();
-glTranslatef(-2.45, 2.18, -25.0);
-glScalef(-4.0, 1.5, 3.2);
+glTranslatef(-2.45, 2.185, -25.0);
+glScalef(-4.0, 1.6, 3.2);
 glutSolidCube(1.0);
 glPopMatrix();
 
