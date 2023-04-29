@@ -113,14 +113,17 @@ glPopMatrix();
 
 // ################## LAMPADAS ACIMA ##################
 
+// ################## PORTARIA ABAIXO ##################
 
-
-// PILASTRA 1 ATRAS direita
-
-glColor4f(0.5, 0.2, 0.0, 0.0);
 glPushMatrix();
-glTranslatef(-1.0, 1.2, -25.0);
-glScalef(1., 5.2, 9.8);
+glTranslatef(0.0, 0.0, 11.612);
+
+// HORIZONTAL SUPERIOR PRETA
+
+glColor3f(0.15, 0.15, 0.15);
+glPushMatrix();
+glTranslatef(0.35, 4.5, -25.0);
+glScalef(-7.4, 1.5, 3.2);
 glutSolidCube(1.0);
 glPopMatrix();
 
@@ -128,37 +131,35 @@ glPopMatrix();
 
 glColor4f(0.5, 0.2, 0.0, 0.0);
 glPushMatrix();
-glTranslatef(1.8, 1.2, -25.0);
-glScalef(4.5, 5.2, 9.8);
+glTranslatef(1.8, 1.95, -25.0);
+glScalef(4.5, 3.7, 3.2);
 glutSolidCube(1.0);
 glPopMatrix();
-
-// Parede ATRAS esquerda
-
-glMatrixMode(GL_MODELVIEW); //efeito espelhado
-glPushMatrix();
-glColor4f(0.5f, 0.5f, 0.5f, 1.0f);
-glTranslatef(-4.3, 0.5, -25.5);
-glScalef(0.5, 3.7, 9.8);
-glutSolidCube(1.0);
-
-glPopMatrix();
-
-//parede de baixo
-glColor4f(0.0, 0.0, 0.0, 0.0);
-glPushMatrix();
-glTranslatef(-4.3, -0.7, -25.5);
-glScalef(0.5, 1.4, 9.8);
-glutSolidCube(1.0);
-glPopMatrix();
-
 
 // Parede superior esquerda
 
 glColor4f(0.5, 0.2, 0.0, 0.0);
 glPushMatrix();
-glTranslatef(-2.5, 3.7, -25.0);
-glScalef(-4.0, 2.8, 9.8);
+glTranslatef(-2.45, 3.37, -25.0);
+glScalef(-4.0, 0.86, 3.2);
+glutSolidCube(1.0);
+glPopMatrix();
+
+// Parede inferior esquerda 1
+
+glColor3f(0.11, 0.11, 0.11);
+glPushMatrix();
+glTranslatef(-2.45, 0.8, -25.0);
+glScalef(-4.0, 1.4, 3.2);
+glutSolidCube(1.0);
+glPopMatrix();
+
+// Parede inferior esquerda 2
+
+glColor3f(0.15, 0.15, 0.15);
+glPushMatrix();
+glTranslatef(-2.45, 2.18, -25.0);
+glScalef(-4.0, 1.5, 3.2);
 glutSolidCube(1.0);
 glPopMatrix();
 
@@ -167,98 +168,73 @@ glPopMatrix();
 glColor4f(0.5, 0.2, 0.0, 0.0);
 glPushMatrix();
 glTranslatef(-3.7, 4.5, -25.0);
-glScalef(1.5, 1.5, 9.8);
+glScalef(1.5, 1.5, 3.2);
 glutSolidCube(1.0);
 glPopMatrix();
 
-// HORIZONTAL SUPERIOR PRETA
+glPopMatrix();
 
-glColor4f(0.0, 0.0, 0.0, 0.0);
+// ################## PORTARIA ACIMA ##################
+
+// ################## PORTAO PESSOAS ABAIXO ##################
 glPushMatrix();
-glTranslatef(0.7, 4.5, -25.0);
-glScalef(-9.1, 1.5, 9.8);
-glutSolidCube(1.0);
-glPopMatrix();
+glTranslatef(-1.7, 0.0, -10.9);
+glRotatef(-90.0, 0.0, 1.0, 0.0);
 
-/*estaca lado direito tr?s*/
-glColor3f(1.0, 1.0, 1.0);
-glPushMatrix();
-glTranslatef(-1.8, 0.1, -26.0);
-glScalef(0.2, 4.0, 0.2);
-glutSolidCube(1.0);
-glPopMatrix();
-
-/*estaca lado esquerdo tr?s*/
-glColor3f(1.0, 1.0, 1.0);
-glPushMatrix();
-glTranslatef(-4.1, 0.1, -26.0);
-glScalef(0.2, 4.0, 0.2);
-glutSolidCube(1.0);
-glPopMatrix();
-
-// estaca inferiores port?o //
 glColor3f(1.0, 1.0, 1.0);
 
 glPushMatrix();
-glTranslatef(-3.0, 0.4, -26.0);
-glScalef(2.1, 0.1, 0.1);
+glTranslatef(0.0, 0.3, 2.7);
+glScalef(1.5, 0.2, 0.1);
 glutSolidCube(1.0);
 glPopMatrix();
 
 glPushMatrix();
-glTranslatef(-3.0, 0.8, -26.0);
-glScalef(2.1, 0.1, 0.1);
-glutSolidCube(1.0);
-glPopMatrix();
-
-
-glPushMatrix();
-glTranslatef(-3.0, 1.2, -26.0);
-glScalef(2.1, 0.1, 0.1);
+glTranslatef(0.0, 0.8, 2.7);
+glScalef(1.5, 0.1, 0.1);
 glutSolidCube(1.0);
 glPopMatrix();
 
 glPushMatrix();
-glTranslatef(-3.0, 1.6, -26.0);
-glScalef(2.1, 0.1, 0.1);
+glTranslatef(0.0, 1.3, 2.7);
+glScalef(1.5, 0.1, 0.1);
 glutSolidCube(1.0);
 glPopMatrix();
 
 glPushMatrix();
-glTranslatef(-3.0, 2.0, -26.0);
-glScalef(2.1, 0.1, 0.1);
+glTranslatef(0.0, 1.8, 2.7);
+glScalef(1.5, 0.1, 0.1);
 glutSolidCube(1.0);
 glPopMatrix();
 
 glPushMatrix();
-glTranslatef(-3.0, 0.0, -26.0);
-glScalef(2.1, 0.1, 0.1);
+glTranslatef(0.0, 2.3, 2.7);
+glScalef(1.5, 0.1, 0.1);
 glutSolidCube(1.0);
 glPopMatrix();
 
 glPushMatrix();
-glTranslatef(-3.0, -0.4, -26.0);
-glScalef(2.1, 0.1, 0.1);
+glTranslatef(0.0, 2.8, 2.7);
+glScalef(1.5, 0.2, 0.1);
+glutSolidCube(1.0);
+glPopMatrix();
+
+/*estacas verticais portao*/
+glPushMatrix();
+glTranslatef(0.8, 1.5, 2.7);
+glScalef(0.2, 2.8, 0.1);
 glutSolidCube(1.0);
 glPopMatrix();
 
 glPushMatrix();
-glTranslatef(-3.0, -0.8, -26.0);
-glScalef(2.1, 0.1, 0.1);
+glTranslatef(-0.8, 1.5, 2.7);
+glScalef(0.2, 2.8, 0.1);
 glutSolidCube(1.0);
 glPopMatrix();
 
-glPushMatrix();
-glTranslatef(-3.0, -1.2, -26.0);
-glScalef(2.1, 0.1, 0.1);
-glutSolidCube(1.0);
 glPopMatrix();
 
-glPushMatrix();
-glTranslatef(-3.0, -1.6, -26.0);
-glScalef(2.1, 0.1, 0.1);
-glutSolidCube(1.0);
-glPopMatrix();
+// ################## PORTAO PESSOAS ACIMA ##################
 
 // ################## PORTAO FRONTAL 1 ABAIXO ##################
 glPushMatrix();
