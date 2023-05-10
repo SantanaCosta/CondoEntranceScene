@@ -1,7 +1,43 @@
 #include<stdlib.h>
 #include<GL/glut.h>
 #include "image.h"
-#define TEXTURA_DO_PLANO "Letreiro.png"
+#define TEXTURA_DO_PLANO "Letreiro.sgi"
+
+GLfloat chao_difusa[]    = { 0.3, 0.3, 0.3, 0.3 };
+GLfloat chao_especular[] = { 0.25, 0.25, 0.25, 0.25 };
+GLfloat chao_brilho[]    = { 50.0 };
+
+GLfloat cobertura_difusa[]    = { 0.6, 0.6, 0.6, 0.6 };
+GLfloat cobertura_especular[] = { 0.1, 0.1, 0.1, 0.1 };
+GLfloat cobertura_brilho[]    = { 50.0 };
+
+GLfloat marrom_difusa[]    = { 0.5, 0.2, 0.0, 0.0 };
+GLfloat marrom_especular[] = { 0.2, 0.2, 0.2, 0.2 };
+GLfloat marrom_brilho[]    = { 50.0 };
+
+GLfloat det_pil_difusa[]    = { 0.6, 0.3, 0.0, 1.0 };
+GLfloat det_pil_especular[] = { 0.5, 0.5, 0.5, 0.5 };
+GLfloat det_pil_brilho[]    = { 50.0 };
+
+GLfloat branco_difusa[]    = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat branco_especular[] = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat branco_brilho[]    = { 50.0 };
+
+GLfloat vidro_difusa[]    = { 0.15, 0.15, 0.15, 0.15 };
+GLfloat vidro_especular[] = { 1.0, 1.0, 1.0, 1.0 };
+GLfloat vidro_brilho[]    = { 50.0 };
+
+GLfloat portao_metal_difusa[]    = { 0.05, 0.05, 0.05, 0.05 };
+GLfloat portao_metal_especular[] = { 0.4, 0.4, 0.4, 0.4 };
+GLfloat portao_metal_brilho[]    = { 50.0 };
+
+GLfloat barreira_difusa[]    = { 1.0, 1.0, 0.0, 1.0 };
+GLfloat barreira_especular[] = { 0.3, 0.3, 0.3, 0.3 };
+GLfloat barreira_brilho[]    = { 50.0 };
+
+GLfloat posicao_luz[]    = { 1.0, 1.1, -2.0, 1.0};
+GLfloat cor_luz[]        = { 1.0, 1.0, 1.0, 1.0};
+GLfloat cor_luz_amb[]    = { 0.5, 0.5, 0.5, 1.0};
 
 static int rot = 0;
 static int zoom = 0;
@@ -25,7 +61,6 @@ void carregar_texturas(void){
   glBindTexture(GL_TEXTURE_2D, textura_plano);
   
   if(!(img=ImageLoad(TEXTURA_DO_PLANO))) {
-    //fprintf(stderr,"Error reading a texture.\n");
     exit(-1);
   }
 
@@ -34,7 +69,6 @@ void carregar_texturas(void){
 			   GL_RGB, GL_UNSIGNED_BYTE, 
 			   (GLvoid *)(img->data));
   if(gluerr){
-    //fprintf(stderr,"GLULib%s\n",gluErrorString(gluerr));
     exit(-1);
   }
 
@@ -51,6 +85,17 @@ void init(void){
   carregar_texturas();
   glShadeModel(GL_FLAT);
   glEnable(GL_DEPTH_TEST);
+  
+  glLightfv(GL_LIGHT0, GL_DIFFUSE, cor_luz);
+  glLightfv(GL_LIGHT0, GL_SPECULAR, cor_luz);
+  glLightfv(GL_LIGHT0, GL_AMBIENT, cor_luz_amb);
+  glLightfv(GL_LIGHT0, GL_POSITION, posicao_luz);
+  
+  glEnable(GL_LIGHTING);
+  glEnable(GL_LIGHT0);
+
+  glEnable(GL_AUTO_NORMAL);
+  glEnable(GL_NORMALIZE);
 }
 
 void display(void){
@@ -77,15 +122,19 @@ glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
   glDisable(GL_TEXTURE_2D);
 
 //chao
-glColor3f(0.3, 0.3, 0.3);
 glPushMatrix();
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, chao_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, chao_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, chao_brilho);
 glTranslatef(1.0, 0.0, -4.0);
 glScalef(12.0, 0.2, 24.0);
 glutSolidCube(1.0);
 glPopMatrix();
 
 // ################## COBERTURA ABAIXO ##################
-glColor3f(0.6, 0.6, 0.6);
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, cobertura_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, cobertura_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, cobertura_brilho);
 //teto
 glPushMatrix();
 glTranslatef(-0.5, 4.7, -4.0);
@@ -102,8 +151,9 @@ glPopMatrix();
 // ################## COBERTURA ACIMA ##################
 
 // ################## LAMPADAS ABAIXO ##################
-
-glColor3f(1.0, 1.0, 1.0);
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, branco_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, branco_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, branco_brilho);
 
 // linha 0
 glPushMatrix();
@@ -178,8 +228,10 @@ glPushMatrix();
 glTranslatef(-0.05, 0.0, 11.593);
 
 // HORIZONTAL SUPERIOR PRETA
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, vidro_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, vidro_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, vidro_brilho);
 
-glColor3f(0.15, 0.15, 0.15);
 glPushMatrix();
 glTranslatef(0.35, 4.0, -25.0);
 glScalef(-7.4, 0.4, 3.2);
@@ -187,8 +239,10 @@ glutSolidCube(1.0);
 glPopMatrix();
 
 //parede lateral direita
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, marrom_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, marrom_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, marrom_brilho);
 
-glColor4f(0.5, 0.2, 0.0, 0.0);
 glPushMatrix();
 glTranslatef(1.8, 1.95, -25.0);
 glScalef(4.5, 3.7, 3.2);
@@ -196,8 +250,9 @@ glutSolidCube(1.0);
 glPopMatrix();
 
 // Parede superior esquerda
-
-glColor4f(0.5, 0.2, 0.0, 0.0);
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, portao_metal_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, portao_metal_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, portao_metal_brilho);
 glPushMatrix();
 glTranslatef(-2.45, 3.37, -25.0);
 glScalef(-4.0, 0.86, 3.2);
@@ -205,7 +260,6 @@ glutSolidCube(1.0);
 glPopMatrix();
 
 // Parede inferior central baixo
-glColor3f(0.07, 0.07, 0.07);
 glPushMatrix();
 glTranslatef(-3.45, 0.8, -24.2);
 glScalef(-2.0, 1.4, 1.6);
@@ -214,7 +268,6 @@ glPopMatrix();
 
 // Parede inferior direita baixo
 
-glColor3f(0.05, 0.05, 0.05);
 glPushMatrix();
 glTranslatef(-1.45, 0.8, -24.2);
 glScalef(-2.0, 1.4, 1.6);
@@ -222,7 +275,6 @@ glutSolidCube(1.0);
 glPopMatrix();
 
 // Parede inferior esquerda baixo
-glColor3f(0.05, 0.05, 0.05);
 glPushMatrix();
 glTranslatef(-3.45, 0.8, -25.8);
 glScalef(-2.0, 1.4, 1.6);
@@ -230,7 +282,6 @@ glutSolidCube(1.0);
 glPopMatrix();
 
 // Detalhe vidro 1
-glColor3f(0.05, 0.05, 0.05);
 glPushMatrix();
 glTranslatef(-4.4, 2.2, -23.45);
 glScalef(-0.1, 1.5, 0.1);
@@ -238,7 +289,6 @@ glutSolidCube(1.0);
 glPopMatrix();
 
 // Detalhe vidro 2
-glColor3f(0.05, 0.05, 0.05);
 glPushMatrix();
 glTranslatef(-2.45, 2.2, -23.45);
 glScalef(-0.1, 1.5, 0.1);
@@ -246,7 +296,6 @@ glutSolidCube(1.0);
 glPopMatrix();
 
 // Detalhe vidro 3
-glColor3f(0.05, 0.05, 0.05);
 glPushMatrix();
 glTranslatef(-0.5, 2.2, -23.45);
 glScalef(-0.1, 1.5, 0.1);
@@ -254,7 +303,6 @@ glutSolidCube(1.0);
 glPopMatrix();
 
 // Detalhe vidro 4
-glColor3f(0.05, 0.05, 0.05);
 glPushMatrix();
 glTranslatef(-4.4, 2.2, -25.0);
 glScalef(-0.1, 1.5, 0.1);
@@ -262,7 +310,6 @@ glutSolidCube(1.0);
 glPopMatrix();
 
 // Detalhe vidro 4
-glColor3f(0.05, 0.05, 0.05);
 glPushMatrix();
 glTranslatef(-4.4, 2.2, -26.55);
 glScalef(-0.1, 1.5, 0.1);
@@ -270,8 +317,9 @@ glutSolidCube(1.0);
 glPopMatrix();
 
 // Vidro
-
-glColor3f(0.15, 0.15, 0.15);
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, vidro_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, vidro_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, vidro_brilho);
 glPushMatrix();
 glTranslatef(-2.45, 2.185, -25.0);
 glScalef(-3.9, 1.6, 3.1);
@@ -279,8 +327,10 @@ glutSolidCube(1.0);
 glPopMatrix();
 
 // Pilastra Superior Esquerda
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, marrom_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, marrom_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, marrom_brilho);
 
-glColor4f(0.5, 0.2, 0.0, 0.0);
 glPushMatrix();
 glTranslatef(-3.9, 4.5, -25.0);
 glScalef(1.1, 1.5, 3.2);
@@ -296,7 +346,9 @@ glPushMatrix();
 glTranslatef(-1.7, 0.0, -10.9);
 glRotatef(-90.0, 0.0, 1.0, 0.0);
 
-glColor3f(1.0, 1.0, 1.0);
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, branco_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, branco_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, branco_brilho);
 
 glPushMatrix();
 glTranslatef(0.0, 0.3, 2.7);
@@ -357,7 +409,9 @@ glTranslatef(-1.7, 0.0, -0.7);
 glRotatef(-90.0, 0.0, 1.0, 0.0);
 
 /*estacas horizontais portao*/
-glColor3f(1.0, 1.0, 1.0);
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, branco_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, branco_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, branco_brilho);
 
 glPushMatrix();
 glTranslatef(0.0, 0.3, 2.7);
@@ -417,7 +471,9 @@ glTranslatef(-1.7, 0.0, -6.9);
 glRotatef(-90.0, 0.0, 1.0, 0.0);
 
 /*estacas horizontais portao*/
-glColor3f(1.0, 1.0, 1.0);
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, branco_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, branco_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, branco_brilho);
 
 glPushMatrix();
 glTranslatef(0.0, 0.3, 2.7);
@@ -476,7 +532,9 @@ glPushMatrix();
 glTranslatef(-0.6, 0.0, -0.2);
 
 /*estacas horizontais portao*/
-glColor3f(1.0, 1.0, 1.0);
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, branco_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, branco_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, branco_brilho);
 
 glPushMatrix();
 glTranslatef(0.0, 0.3, 2.7);
@@ -531,7 +589,10 @@ glPopMatrix();
 // ################## PORTAO ENTRE PILASTRAS LATERAIS ACIMA ##################
 
 // ################## PILASTRA 1 ABAIXO ##################
-glColor4f(0.5, 0.2, 0.0, 0.0);
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, marrom_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, marrom_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, marrom_brilho);
+
 glPushMatrix();
 // altura = altura_chao/2 + altura_obj/2
 glTranslatef(-4.2, 2.2, 2.5);
@@ -540,7 +601,9 @@ glutSolidCube(1.0);
 glPopMatrix();
 
 //detalhes pilastra 1
-glColor4f(0.6, 0.3, 0.0, 0.0);
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, det_pil_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, det_pil_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, det_pil_brilho);
 //linha 0
 //cima
 glPushMatrix();
@@ -794,7 +857,10 @@ glPopMatrix();
 // ################## PILASTRA 1 ACIMA ##################
 
 // ################## PILASTRA 2 ABAIXO ##################
-glColor4f(0.5, 0.2, 0.0, 0.0);
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, marrom_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, marrom_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, marrom_brilho);
+
 glPushMatrix();
 // altura = altura_chao/2 + altura_obj/2
 glTranslatef(3.0, 2.2, 2.5);
@@ -803,7 +869,10 @@ glutSolidCube(1.0);
 glPopMatrix();
 
 //detalhes pilastra 2
-glColor4f(0.6, 0.3, 0.0, 0.0);
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, det_pil_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, det_pil_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, det_pil_brilho);
+
 //linha 0
 //cima
 glPushMatrix();
@@ -1055,7 +1124,10 @@ glutSolidTetrahedron();
 glPopMatrix();
 
 /*estaca lado esquerdo frente*/
-glColor3f(1.0, 1.0, 0.0);
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, barreira_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, barreira_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, barreira_brilho);
+
 glPushMatrix();
 glTranslatef(-2.5, 0.7, 3.0);
 glScalef(0.2, 1.2, 0.1);
@@ -1083,7 +1155,9 @@ glutSolidCube(1.0);
 glPopMatrix();
 
 //lateral direita
-glColor3f(1.0, 1.0, 1.0);
+glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, branco_difusa);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, branco_especular);
+glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, branco_brilho);
 
 glPushMatrix();
 glTranslatef(2.5, 1.2, 4.9);
