@@ -3,9 +3,9 @@
 #include "image.h"
 #define TEXTURA_DO_PLANO "Letreiro.sgi"
 
-GLfloat chao_difusa[]    = { 0.3, 0.3, 0.3, 0.3 };
-GLfloat chao_especular[] = { 0.25, 0.25, 0.25, 0.25 };
-GLfloat chao_brilho[]    = { 50.0 };
+GLfloat chao_difusa[]    = { 0.2, 0.2, 0.2, 0.2 };
+GLfloat chao_especular[] = { 0.0, 0.0, 0.0, 0.0 };
+GLfloat chao_brilho[]    = { 0.3 };
 
 GLfloat cobertura_difusa[]    = { 0.6, 0.6, 0.6, 0.6 };
 GLfloat cobertura_especular[] = { 0.1, 0.1, 0.1, 0.1 };
@@ -76,14 +76,14 @@ void carregar_texturas(void){
   glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_WRAP_T,GL_REPEAT);
   glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MIN_FILTER,GL_LINEAR_MIPMAP_LINEAR);
   glTexParameterf(GL_TEXTURE_2D,GL_TEXTURE_MAG_FILTER,GL_LINEAR);
-  glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_DECAL);
+  glTexEnvf(GL_TEXTURE_ENV,GL_TEXTURE_ENV_MODE,GL_BLEND);
 
 }
 
 void init(void){
   glClearColor (0.0, 0.0, 0.0, 0.0);
   carregar_texturas();
-  glShadeModel(GL_FLAT);
+  
   glEnable(GL_DEPTH_TEST);
   
   glLightfv(GL_LIGHT0, GL_DIFFUSE, cor_luz);
@@ -1207,7 +1207,7 @@ case 'R':
 rot = (rot-5) % 360;
 glutPostRedisplay();
 break;
-  case 27:                                         // tecla Esc (encerra o programa)
+  case 27:
 	exit(0);
 	break;
   }
@@ -1219,7 +1219,7 @@ int main(int argc, char** argv){
   glEnable(GL_DEPTH_TEST);
   glutInitWindowSize (500, 500); 
   glutInitWindowPosition (100, 100);
-  glutCreateWindow ("Atividade 2 - OpenGL");
+  glutCreateWindow ("Portaria Condomínio");
   init ();
   glutDisplayFunc(display); 
   glutReshapeFunc(reshape);
