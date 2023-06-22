@@ -98,6 +98,43 @@ void init(void){
   glEnable(GL_NORMALIZE);
 }
 
+GLfloat anguloPortao1 = 0.0;
+GLfloat anguloPortao2 = 0.0;
+GLfloat anguloCancela = 0.0;
+GLfloat xJanela = -1.48;
+float xstepPortaoPedestre = 1.0;
+float xstepPortao1 = 1.0;
+float xstepPortao2 = 1.0;
+float xstepCancela = 1.0;
+float xstepJanela = 0.05;
+
+// Função callback chamada pela GLUT a cada intervalo de tempo
+void Timer (int value)
+{
+  // Muda a direção quando chega no limite de 90 graus
+  if (anguloPortao1 >= 0.0 || anguloPortao1 < -90.0)
+    xstepPortao1 *= -1;
+    
+  if (anguloPortao2 >= 90.0 || anguloPortao2 < 0.0)
+    xstepPortao2 *= -1;
+    
+  if (anguloCancela >= 0.0 || anguloCancela < -38.0)
+    xstepCancela *= -1;
+    
+if (xJanela >= -1.48 || xJanela < -3.3)
+    xstepJanela *= -1;
+
+  // Incrementa ou decrementa o ângulo do portão
+  anguloPortao1 += xstepPortao1;
+  anguloPortao2 += xstepPortao2;
+  anguloCancela += xstepCancela;
+  xJanela += xstepJanela;
+
+  glutPostRedisplay();
+  glutTimerFunc (36,Timer, 1);
+}
+
+
 void display(void){
   glClear (GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
 
@@ -269,8 +306,8 @@ glPopMatrix();
 // Parede inferior direita baixo
 
 glPushMatrix();
-glTranslatef(-1.45, 0.8, -24.2);
-glScalef(-2.0, 1.4, 1.6);
+glTranslatef(-1.45, 0.8, -23.45);
+glScalef(-2.0, 1.4, 0.1);
 glutSolidCube(1.0);
 glPopMatrix();
 
@@ -320,11 +357,35 @@ glPopMatrix();
 glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, vidro_difusa);
 glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, vidro_especular);
 glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, vidro_brilho);
+
+// Vidro 1 - x até -3.43
 glPushMatrix();
-glTranslatef(-2.45, 2.185, -25.0);
-glScalef(-3.9, 1.6, 3.1);
+glTranslatef(xJanela, 2.21, -23.5);
+glScalef(1.95, 1.44, 0.05);
 glutSolidCube(1.0);
 glPopMatrix();
+
+// Vidro 2
+glPushMatrix();
+glTranslatef(-3.38, 2.185, -23.47);
+glScalef(1.95, 1.6, 0.05);
+glutSolidCube(1.0);
+glPopMatrix();
+
+// Vidro 3
+glPushMatrix();
+glTranslatef(-4.35, 2.185, -25.78);
+glScalef(0.05, 1.6, 1.46);
+glutSolidCube(1.0);
+glPopMatrix();
+
+// Vidro 4
+glPushMatrix();
+glTranslatef(-4.35, 2.185, -24.23);
+glScalef(0.05, 1.6, 1.46);
+glutSolidCube(1.0);
+glPopMatrix();
+
 
 // Pilastra Superior Esquerda
 glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, marrom_difusa);
@@ -333,7 +394,7 @@ glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, marrom_brilho);
 
 glPushMatrix();
 glTranslatef(-3.9, 4.5, -25.0);
-glScalef(1.1, 1.5, 3.2);
+glScalef(1.1, 1.42, 3.2);
 glutSolidCube(1.0);
 glPopMatrix();
 
@@ -349,6 +410,7 @@ glRotatef(-90.0, 0.0, 1.0, 0.0);
 glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, branco_difusa);
 glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, branco_especular);
 glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, branco_brilho);
+
 
 glPushMatrix();
 glTranslatef(0.0, 0.3, 2.7);
@@ -393,15 +455,17 @@ glScalef(0.2, 2.8, 0.1);
 glutSolidCube(1.0);
 glPopMatrix();
 
-glPushMatrix();
-glTranslatef(-0.8, 1.5, 2.7);
-glScalef(0.2, 2.8, 0.1);
-glutSolidCube(1.0);
-glPopMatrix();
+// Não precisa transladar a estaca da âncora
+ glPushMatrix();
+ glTranslatef(-0.8, 1.5, 2.7);
+ glScalef(0.2, 2.8, 0.1);
+ glutSolidCube(1.0);
+ glPopMatrix();
 
 glPopMatrix();
 
 // ################## PORTAO PESSOAS ACIMA ##################
+
 
 // ################## PORTAO FRONTAL 1 ABAIXO ##################
 glPushMatrix();
@@ -412,6 +476,15 @@ glRotatef(-90.0, 0.0, 1.0, 0.0);
 glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, branco_difusa);
 glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, branco_especular);
 glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, branco_brilho);
+
+// Translada para a posição da âncora
+glTranslatef(3.0, 1.5, 2.7);
+
+// Rotaciona 90º em torno do eixo y
+glRotatef(anguloPortao1, 0.0, 1.0, 0.0);
+
+// Translada de volta para a posição original
+glTranslatef(-3.0, -1.5, -2.7);
 
 glPushMatrix();
 glTranslatef(0.0, 0.3, 2.7);
@@ -474,6 +547,15 @@ glRotatef(-90.0, 0.0, 1.0, 0.0);
 glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, branco_difusa);
 glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, branco_especular);
 glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, branco_brilho);
+
+// Translada para a posição da âncora
+glTranslatef(-3.0, 1.5, 2.7);
+
+// Rotaciona 90º em torno do eixo y
+glRotatef(anguloPortao2, 0.0, 1.0, 0.0);
+
+// Translada de volta para a posição original
+glTranslatef(3.0, -1.5, -2.7);
 
 glPushMatrix();
 glTranslatef(0.0, 0.3, 2.7);
@@ -1159,6 +1241,22 @@ glMaterialfv(GL_FRONT_AND_BACK, GL_DIFFUSE, branco_difusa);
 glMaterialfv(GL_FRONT_AND_BACK, GL_SPECULAR, branco_especular);
 glMaterialfv(GL_FRONT_AND_BACK, GL_SHININESS, branco_brilho);
 
+// Translada para a posição da âncora (o lado esquerdo da barra)
+glTranslatef(2.5, 1.2, 4.9);
+
+// Rotaciona em torno do eixo z (o eixo perpendicular à barra)
+glRotatef(anguloCancela, 1.0, 0.0, 0.0);
+
+// Translada de volta para a posição original
+glTranslatef(-2.5, -1.2, -4.9);
+
+GLfloat y = (anguloCancela*-1.0) / 35.0;
+GLfloat z = (anguloCancela*-1.0) / 148.0;
+
+// Translada para ajustar a altura da barra
+glTranslatef(0.0, y, z);
+
+// Desenha a barra
 glPushMatrix();
 glTranslatef(2.5, 1.2, 4.9);
 glScalef(0.1, 0.1, 3.8);
@@ -1223,6 +1321,7 @@ int main(int argc, char** argv){
   init ();
   glutDisplayFunc(display); 
   glutReshapeFunc(reshape);
+  glutTimerFunc(36, Timer, 1);
   glutKeyboardFunc(keyboard);
   glutMainLoop();
   return 0;
